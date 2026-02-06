@@ -20,6 +20,7 @@ for (let btn of buttons) {
             display.textContent = currentValue;
         }
         else if (btn.classList.contains("equals")) {
+            if(operator===null)return;
 
             let result;
             switch(operator){
@@ -46,11 +47,7 @@ for (let btn of buttons) {
             currentValue=String(result);
             display.textContent=currentValue;
             operator=null;
-            previousValue=null;
-
-
-
-            
+            previousValue=null;            
         }
         else if(btn.classList.contains("clear")){
             let result="0";
@@ -62,9 +59,3 @@ for (let btn of buttons) {
     });
 }
 
-
-
-//Works for single elments only
-// btn.addEventListener("click",() => {
-//     console.log("Button clicked");
-// });
