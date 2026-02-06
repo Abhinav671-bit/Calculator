@@ -4,9 +4,18 @@ const display = document.querySelector(".Display")
 let currentValue = "0";
 let previousValue = "0";
 let operator = null;
+let justcalculated=false;
+
 for (let btn of buttons) {
     btn.addEventListener("click", () => {
         if (btn.classList.contains("number")) {
+            if(justcalculated===true){
+                currentValue="0";
+                previousValue=null;
+                operator=null;
+                justcalculated=false;
+            }
+
             const digit = btn.textContent;
 
             if (currentValue === "0") currentValue = digit;
@@ -43,7 +52,7 @@ for (let btn of buttons) {
                         display.textContent="Invalid Input";
                         operator=null;
                         previousValue=null;
-                        currentValue=0;
+                        currentValue="0";
                         return;
                     }
                     result=Number(previousValue) / Number(currentValue);
@@ -52,7 +61,9 @@ for (let btn of buttons) {
             currentValue=String(result);
             display.textContent=currentValue;
             operator=null;
-            previousValue=null;            
+            previousValue=null;
+            
+            justcalculated=true;
         }
         else if(btn.classList.contains("clear")){
             let result="0";
