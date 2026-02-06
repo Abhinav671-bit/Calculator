@@ -14,6 +14,11 @@ for (let btn of buttons) {
             display.textContent = currentValue;
         }
         else if (btn.classList.contains("operator")) {
+            if(operator !==null && currentValue==="0"){
+                operator=btn.textContent;
+                return;
+            }
+
             operator = btn.textContent;
             previousValue = currentValue;
             currentValue = "0";
