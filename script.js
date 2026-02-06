@@ -20,40 +20,37 @@ for (let btn of buttons) {
             display.textContent = currentValue;
         }
         else if (btn.classList.contains("equals")) {
-            if (operator === "+") {
-                const result = Number(previousValue) + Number(currentValue);
-                currentValue = String(result);
-                display.textContent = currentValue;
-                operator = null;
-                previousValue = null;
+
+            let result;
+            switch(operator){
+                case "+":
+                    result=Number(previousValue) + Number(currentValue);
+                    break;
+                case "-":
+                    result=Number(previousValue) - Number(currentValue);
+                    break;
+                case "*":
+                    result=Number(previousValue) * Number(currentValue);
+                    break;
+                case "/":
+                    if(currentValue==="0"){
+                        display.textContent="Invalid Input";
+                        operator=null;
+                        previousValue=null;
+                        currentValue=0;
+                        return;
+                    }
+                    result=Number(previousValue) / Number(currentValue);
+                    break;
             }
-            if (operator === "-") {
-                const result = Number(previousValue) - Number(currentValue);
-                currentValue = String(result);
-                display.textContent = currentValue;
-                operator = null;
-                previousValue = null;
-            }
-            if (operator === "*") {
-                const result = Number(previousValue) * Number(currentValue);
-                currentValue = String(result);
-                display.textContent = currentValue;
-                operator = null;
-                previousValue = null;
-            }
-            if (operator === "/") {
-                if (currentValue === "0") {
-                    let result = "Invalid Input";
-                    display.textContent=result;
-                }
-                else {
-                    const result = Number(previousValue) / Number(currentValue);
-                    currentValue = String(result);
-                    display.textContent = currentValue;
-                    operator = null;
-                    previousValue = null;
-                }
-            }
+            currentValue=String(result);
+            display.textContent=currentValue;
+            operator=null;
+            previousValue=null;
+
+
+
+            
         }
         else if(btn.classList.contains("clear")){
             let result="0";
