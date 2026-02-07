@@ -6,6 +6,22 @@ let previousValue = "0";
 let operator = null;
 let justcalculated=false;
 
+document.addEventListener("keydown",handleKey);
+
+function handleKey(e){
+    const key=e.key;
+    const btn=[...buttons].find(
+        b =>
+        b.textContent===key ||
+        (key==="Enter" && b.classList.contains("equals"))||
+        (key==="Backspace" && b.classList.contains("clear"))
+        //“The arrow function returns a condition..find() returns the button.”
+
+    );
+    if(btn)btn.click();
+}
+
+
 for (let btn of buttons) {
     btn.addEventListener("click", () => {
         if (btn.classList.contains("number")) {
