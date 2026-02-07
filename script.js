@@ -71,6 +71,16 @@ for (let btn of buttons) {
             previousValue="0";
             currentValue="0";
             operator=null;
+            justcalculated=false;
+        }
+        else if(btn.classList.contains("dot")){
+            if(justcalculated){
+                currentValue="0";
+                justcalculated=false;
+            }
+            if(currentValue.includes("."))return;
+            currentValue+=".";
+            display.textContent=currentValue;
         }
     });
 }
